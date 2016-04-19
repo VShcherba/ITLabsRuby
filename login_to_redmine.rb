@@ -1,12 +1,12 @@
 require 'watir-webdriver'
-require 'test-unit'
+require 'test/unit'
 
 @b = Watir::Browser.new :firefox
 
 @b.goto 'http://demo.redmine.org'
-register = @b.link(class:'register')
-register.click
-login = 'Heyyo' + rand(999).to_s
+register_button = @b.link(class:'register')
+register_button.click
+login = 'Madowl' + rand(9999).to_s
 
 @b.text_field(id:'user_login').set login
 
@@ -16,8 +16,8 @@ login = 'Heyyo' + rand(999).to_s
 @b.text_field(id:'user_lastname').set 'last name'
 @b.text_field(id:'user_mail').set login + '@mailinator.com'
 @b.button(name:'commit').click
-
-fail unless @b.link(class:'user').text.include? 'Heyyo'
+=begin
+fail unless @b.link(class:'user').text.include? 'Madowl'
 
 @b.link(class:'projects').click
 @b.link(class:'icon-add').click
@@ -29,3 +29,4 @@ fail unless @b.link(class:'user').text.include? 'Heyyo'
 fail unless @b.div(id:'flash_notice').text.include? 'Successful creation'
 
 @b.quit
+=end
