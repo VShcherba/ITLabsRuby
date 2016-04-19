@@ -17,7 +17,7 @@ login = 'Heyyo' + rand(999).to_s
 @b.text_field(id:'user_mail').set login + '@mailinator.com'
 @b.button(name:'commit').click
 
-fail unless @b.link(class:'user').text.include? 'login'
+fail unless @b.link(class:'user').text.include? 'Heyyo'
 
 @b.link(class:'projects').click
 @b.link(class:'icon-add').click
