@@ -34,6 +34,24 @@ class TestRedmineBasics < Test::Unit::TestCase
     @b.text_field(id:'version_name').set "first_version"
     @b.button(name:'commit').click
   end
+  def create_feature
+    @b.link(class:'new-issue').click
+    @b.select_list(id:'issue_tracker_id').select 'Feature'
+    @b.text_field(id:'issue_subject').set 'First feature'
+    @b.button(name:'commit').click
+  end
+  def create_bug
+    @b.link(class:'new-issue').click
+    @b.select_list(id:'issue_tracker_id').select 'Bug'
+    @b.text_field(id:'issue_subject').set 'First bug'
+    @b.button(name:'commit').click
+  end
+  def create_support
+    @b.link(class:'new-issue').click
+    @b.select_list(id:'issue_tracker_id').select 'Support'
+    @b.text_field(id:'issue_subject').set 'First support issue'
+    @b.button(name:'commit').click
+  end
 #TEST Cases
 =begin
   def test_create_project
@@ -42,12 +60,16 @@ class TestRedmineBasics < Test::Unit::TestCase
     assert(@b.text.include? "Создание успешно.")
   end
 =end
-def test_create_version
+def test_create_issues
   registration
   create_project
-  create_project_version
-  assert(@b.text.include? "Создание успешно.")
-  assert(@b.link(xpath:'//a[text()="first_version"]').visible?)
+  create_feature
+  assert(@b.div(class:'subject').text.include? 'First feature')
+  create_support
+  assert(@b.div(class:'subject').text.include? 'First support issue')
+  create_bug
+  assert(@b.div(class:'subject').text.include? 'First bug')
+
 end
   def teardown
   #  @b.quit

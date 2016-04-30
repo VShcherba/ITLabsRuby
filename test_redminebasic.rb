@@ -52,8 +52,25 @@ class TestRedmineBasics < Test::Unit::TestCase
     @b.text_field(id:'version_name').set "first_version"
     @b.button(name:'commit').click
   end
-
-
+  def create_feature
+    @b.link(class:'new-issue').click
+    @b.select_list(id:'issue_tracker_id').select 'Feature'
+    @b.text_field(id:'issue_subject').set 'First feature'
+    @b.button(name:'commit').click
+  end
+  def create_bug
+    @b.link(class:'new-issue').click
+    @b.select_list(id:'issue_tracker_id').select 'Bug'
+    @b.text_field(id:'issue_subject').set 'First bug'
+    @b.button(name:'commit').click
+  end
+  def create_support
+    @b.link(class:'new-issue').click
+    @b.select_list(id:'issue_tracker_id').select 'Support'
+    sleep 1
+    @b.text_field(id:'issue_subject').set 'First support issue'
+    @b.button(name:'commit').click
+  end
 
 #TEST Cases
 
@@ -90,29 +107,20 @@ class TestRedmineBasics < Test::Unit::TestCase
     assert(@b.text.include? "Создание успешно.")
     assert(@b.link(xpath:'//a[text()="first_version"]').visible?)
   end
-=begin
-def test_positive
-  register_user
 
-  expected_text = 'Your account has been activated. You can now log in.'
-  actual_text = @driver.find_element(:id, 'flash_notice').text
-  assert_equal(expected_text, actual_text)
-end
-
-def test_log_out
-  register_user
-
-  @driver.find_element(:class, 'logout').click
-  sleep 3
-
-  login_button = @driver.find_element(:class, 'login')
-  assert(login_button.displayed?)
-  assert_equal('http://demo.redmine.org/', @driver.current_url)
-end
-=end
+  def test_create_issues
+    registration
+    create_project
+    create_feature
+    assert(@b.div(class:'subject').text.include? 'First feature')
+    create_support
+    assert(@b.div(class:'subject').text.include? 'First support issue')
+    create_bug
+    assert(@b.div(class:'subject').text.include? 'First bug')
+  end
 
 
   def teardown
-  #  @b.quit
+  @b.quit
   end
 end
