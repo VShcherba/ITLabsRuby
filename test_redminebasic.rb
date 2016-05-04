@@ -11,21 +11,20 @@ class TestRedmineBasics < Test::Unit::TestCase
   def registration
     register_button = @b.link(class:'register')
     register_button.click
-    @@login = 'Madowl' + rand(9999).to_s
+    @login = 'Madowl' + rand(9999).to_s
 
-    @b.text_field(id:'user_login').set @@login
+    @b.text_field(id:'user_login').set @login
     @b.text_field(id:'user_password').set 'qwerty'
     @b.text_field(id:'user_password_confirmation').set 'qwerty'
     @b.text_field(id:'user_firstname').set 'first name'
     @b.text_field(id:'user_lastname').set 'last name'
-    @b.text_field(id:'user_mail').set @@login + '@mailinator.com'
+    @b.text_field(id:'user_mail').set @login + '@mailinator.com'
     @b.button(name:'commit').click
   end
   def login
     login_button = @b.link(class:'login')
     login_button.click
-    sleep 1
-    @b.text_field(id:'username').set @@login
+    @b.text_field(id:'username').when_present.set @login
     @b.text_field(id:'password').set 'qwerty'
     @b.button(name:'login').click
   end
@@ -48,7 +47,8 @@ class TestRedmineBasics < Test::Unit::TestCase
   end
   def create_project_version
     @b.link(id:'tab-versions').click
-    @b.link(xpath:'//a[text()="Новая версия"]').click
+    new_version_button = @b.link(xpath:"//div[@id='tab-content-versions']//a[@class='icon icon-add']")
+    new_version_button.click
     @b.text_field(id:'version_name').set "first_version"
     @b.button(name:'commit').click
   end
@@ -67,8 +67,7 @@ class TestRedmineBasics < Test::Unit::TestCase
   def create_support
     @b.link(class:'new-issue').click
     @b.select_list(id:'issue_tracker_id').select 'Support'
-    sleep 1
-    @b.text_field(id:'issue_subject').set 'First support issue'
+    @b.text_field(id:'issue_subject').when_present.set 'First support issue'
     @b.button(name:'commit').click
   end
 
@@ -76,35 +75,36 @@ class TestRedmineBasics < Test::Unit::TestCase
 
   def test_registration
     registration
-    assert(@b.text.include? 'Ваша учётная запись активирована. Вы можете войти.')
+    assert(@b.text.include?('Ваша учётная запись активирована. Вы можете войти.') || @b.text.include?('Your account has been activated. You can now log in.'))
   end
 
   def test_user_login
+    registration
+    logout
     login
-    assert(@b.link(text: @@login).visible?)
+    assert(@b.link(text: @login).visible?)
   end
 
   def test_user_logout
-    login
-    assert(@b.link(text: @@login).visible?)
+    registration
     logout
     assert(@b.link(class:'login').visible?)
   end
   def test_change_password
     registration
     change_password
-    assert(@b.text.include? 'Пароль успешно обновлён.')
+    assert(@b.text.include?('Пароль успешно обновлён.') || @b.text.include?('Password was successfully updated.'))
   end
   def test_create_project
     registration
     create_project
-    assert(@b.text.include? "Создание успешно.")
+    assert(@b.text.include?("Создание успешно.") || @b.text.include?("Successful creation."))
   end
   def test_create_version
     registration
     create_project
     create_project_version
-    assert(@b.text.include? "Создание успешно.")
+    assert(@b.text.include?("Создание успешно.") || @b.text.include?("Successful creation."))
     assert(@b.link(xpath:'//a[text()="first_version"]').visible?)
   end
 
