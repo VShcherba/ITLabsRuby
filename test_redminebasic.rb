@@ -47,7 +47,8 @@ class TestRedmineBasics < Test::Unit::TestCase
   end
   def create_project_version
     @b.link(id:'tab-versions').click
-    new_version_button = @b.link(xpath:"//div[@id='tab-content-versions']//a[@class='icon icon-add']")
+    new_version_button = @b.div(id:'tab-content-versions').link(class:'icon icon-add')
+    #link(xpath:"//div[@id='tab-content-versions']//a[@class='icon icon-add']")
     new_version_button.click
     @b.text_field(id:'version_name').set "first_version"
     @b.button(name:'commit').click
@@ -105,7 +106,7 @@ class TestRedmineBasics < Test::Unit::TestCase
     create_project
     create_project_version
     assert(@b.text.include?("Создание успешно.") || @b.text.include?("Successful creation."))
-    assert(@b.link(xpath:'//a[text()="first_version"]').visible?)
+    assert(@b.link(text:'first_version').visible?)
   end
 
   def test_create_issues
@@ -121,6 +122,6 @@ class TestRedmineBasics < Test::Unit::TestCase
 
 
   def teardown
-  @b.quit
+  #@b.quit
   end
 end
