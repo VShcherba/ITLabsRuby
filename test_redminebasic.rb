@@ -48,7 +48,6 @@ class TestRedmineBasics < Test::Unit::TestCase
   def create_project_version
     @b.link(id:'tab-versions').click
     new_version_button = @b.div(id:'tab-content-versions').link(class:'icon icon-add')
-    #link(xpath:"//div[@id='tab-content-versions']//a[@class='icon icon-add']")
     new_version_button.click
     @b.text_field(id:'version_name').set "first_version"
     @b.button(name:'commit').click
@@ -67,7 +66,7 @@ class TestRedmineBasics < Test::Unit::TestCase
   end
   def create_support
     @b.link(class:'new-issue').click
-    @b.select_list(id:'issue_tracker_id').select 'Support'
+    @b.select_list(id:'issue_tracker_id').when_present.select 'Support'
     @b.text_field(id:'issue_subject').when_present.set 'First support issue'
     @b.button(name:'commit').click
   end
@@ -122,6 +121,6 @@ class TestRedmineBasics < Test::Unit::TestCase
 
 
   def teardown
-  #@b.quit
+  @b.quit
   end
 end

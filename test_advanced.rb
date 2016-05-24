@@ -22,8 +22,8 @@ class TestAdvanced < Test::Unit::TestCase
 =end
 
 def open_hover_directory
-  hovers_directory = @b.link(xpath:"a[text()='Hovers']")
-  hovers_directory.click
+  hovers_directory = @b.link(text:'Hovers')
+  hovers_directory.when_present.click
 end
 
 # Test Cases methods

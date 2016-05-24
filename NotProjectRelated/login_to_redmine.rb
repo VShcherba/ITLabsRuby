@@ -30,3 +30,7 @@ fail unless @b.div(id:'flash_notice').text.include? 'Successful creation'
 
 @b.quit
 =end
+
+
+
+new_version_button = @b.link(xpath:"//div[@id='tab-content-versions']//a[@class='icon icon-add']")
