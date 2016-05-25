@@ -99,6 +99,8 @@ def test_key_presses
   press_shift_key
   assert(@b.div(class:'example').text.include? 'You entered: SHIFT')
 end
+
+
 def teardown
 @b.quit
 end
