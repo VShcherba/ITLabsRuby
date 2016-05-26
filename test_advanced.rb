@@ -70,7 +70,17 @@ def press_shift_key
   key_to_press = :shift
   @b.send_keys key_to_press
 end
-
+def open_multiple_windows_directory
+  multiple_windows_directory = @b.link(text:'Multiple Windows')
+  multiple_windows_directory.when_present.click
+end
+def open_new_window
+  link_new_window = @b.link(text:'Click Here')
+  link_new_window.when_present.click (:shift)
+end
+def switch_to_new_window
+  @b.window(title:'New Window').use
+end
 # Test Cases methods
 def test_hover_over
   puts 'test_hover_over'
@@ -99,7 +109,13 @@ def test_key_presses
   press_shift_key
   assert(@b.div(class:'example').text.include? 'You entered: SHIFT')
 end
-
+def test_open_multiple_windows
+  puts 'test_open_multiple_windows'
+  open_multiple_windows_directory
+  open_new_window
+  switch_to_new_window
+  assert(@b.text.include? 'New Window')
+end
 
 def teardown
 @b.quit
