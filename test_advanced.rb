@@ -128,7 +128,7 @@ def test_select_from_dropdown
 end
 
 def test_drag_and_drop
-  puts ' test_drag_and_drop'
+  puts 'test_drag_and_drop'
   open_drag_and_drop_directory
   drag_object
   assert(@b.div(id:'column-a').text.include? 'B')
@@ -172,7 +172,7 @@ def test_close_js_confirm
 end
 
 def test_answer_in_js_prompt
-  puts 'test_answer_in_js_prompt'
+  puts ' test_answer_in_js_prompt'
   open_js_alerts_directory
   reveal_js_prompt
   answer_in_js_prompt
@@ -180,6 +180,7 @@ def test_answer_in_js_prompt
 end
 
 def test_jquery_menu_navigation
+  puts 'test_jquery_menu_navigation'
   open_js_menu_directory
   navigate_in_menu
   assert(@b.link(text:'Menu').visible?)
