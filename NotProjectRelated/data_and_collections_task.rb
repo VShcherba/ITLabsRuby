@@ -19,6 +19,7 @@ def max_number(string)
   count = string.length
   number = ''
   count.times {number = number + 9.to_s}
+  number.to_i
   print number
 end
 
