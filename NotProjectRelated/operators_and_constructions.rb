@@ -6,15 +6,7 @@ before output for each next number we should puts "========="
                   if it's more (or less) than 5 it should puts appropriate string "the number is more (or less) than 5"
 in case we've got "0" we should puts "we've got 0"
                   in each case we should get 2 messages except the '0' case
-                  2. add to your solution next test
 
-                  create project
-                  make a random action: create or not a new bug issue
-                  open project page,
-                               open issues tab
-                  if there is a bug present then add self to watchers
-                  if no then create a new bug issue and then add self to watchers
-                  Verify that there is a bug issue and that current user is a watcher
 =end
 i = 0
 while i < 10
