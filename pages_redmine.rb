@@ -1,6 +1,6 @@
 module SignIn
 
-    def registration
+    def register
       register_button = @b.link(class:'register')
       register_button.click
       @login = 'Madowl' + rand(9999).to_s
@@ -17,6 +17,10 @@ end
 
 module RedmineBasic
 
+
+
+
+
      def create_project
       project_name = "Madowl_project_" + rand(9999).to_s
       @b.link(class:'projects').click
@@ -25,25 +29,19 @@ module RedmineBasic
       @b.checkbox(id:'project_is_public').clear
       @b.button(name:'commit').click
     end
-    def create_feature
-      @b.link(class:'new-issue').click
-      @b.select_list(id:'issue_tracker_id').select 'Feature'
-      @b.text_field(id:'issue_subject').set 'First feature'
-      @b.button(name:'commit').click
-    end
+
     def create_bug
       @b.link(class:'new-issue').click
       @b.select_list(id:'issue_tracker_id').select 'Bug'
       @b.text_field(id:'issue_subject').set 'First bug'
       @b.button(name:'commit').click
     end
-    def create_support
-      @b.link(class:'new-issue').click
-      @b.select_list(id:'issue_tracker_id').when_present.select 'Support'
-      @b.text_field(id:'issue_subject').when_present.set 'First support issue'
-      @b.button(name:'commit').click
+    def random_bug_creation
+      random = rand(2)
+      if random == 1
+        create_bug
+      end
     end
-
     def open_issues
       @b.link(class:'issues').click
     end
@@ -53,6 +51,6 @@ module RedmineBasic
     end
 
     def add_to_watchers
-      @b.link(css:'a[href*="watchers/watch"]').click
+      @b.link(xpath:'(//a[contains(@href,"watchers/watch")])[last()]').click
     end
 end
