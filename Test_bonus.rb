@@ -19,6 +19,6 @@ def test_checkboxes
 
 end
 def teardown
-  #@b.quit
+  @b.quit
 end
 end
