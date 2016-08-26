@@ -1,24 +1,23 @@
+require_relative 'board'
 
 class User
-  attr_accessor :@@users
-end
-  @@users = 0
-  def initialize
+  attr_accessor :registered_users, :username
+
+  @@registered_users = []
+  def initialize(username, password)
     @username = username
     @password = password
-    @@users +=1
-
   end
 
-  def register(email)
-    @email = email
-
-  end
-
-  def login
-  end
-
-  def
-
+  def create_new_board(new_name)
+    new_name = Board.new(new_name)
+    new_name.add_user(@username)
   end
 end
+
+vlad = User.new('Vlad',123)
+test_board = vlad.create_new_board('test_board')
+puts test_board.board_title
+puts test_board.board_users
+
+

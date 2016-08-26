@@ -16,8 +16,8 @@ require_relative 'card'
 require_relative 'comment'
 
 # register 2 users
-first_user = User.new
-second_user = User.new
+firstuser = User.new('Vladyslav', 123)
+second_user = User.new('Konstantin', 12345)
 
 
 # create a board
@@ -31,8 +31,13 @@ third_list = Board.new_list
 
 # create 2 card in first list
 
-first_card = List.create_card
-second_card = List.create_card
+to_do_list = List.new('Stuff to be done')
+puts to_do_list.list_name
+in_progress.create_card('In progress')
+to_do_list.create_card('another awesome card')
+
+print to_do_list.cards
+
 
 
 
