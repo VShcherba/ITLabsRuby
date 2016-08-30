@@ -11,7 +11,12 @@ class List
   def create_card(card_name)
     some_card = Card.new(card_name)
     @cards << some_card
-
   end
-end
 
+
+  def to_s
+    string = "list name: #{@list_name}\n"
+    string << "cards: #{@cards}\n"
+  end
+
+end
