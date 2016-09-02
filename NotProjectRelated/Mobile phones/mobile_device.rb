@@ -9,22 +9,18 @@ class MobileDevice
   def charging(hours)
     hours.times do
       if @current_battery < @battery_capacity
-        @current_battery += @charging_speed
-        puts "Charged to #{@current_battery}"
+        @current_battery += self.charging_speed
+        puts @current_battery < @battery_capacity ? "Charged to #{@current_battery}": "Charged to #{@battery_capacity}"
       else
+        @current_battery = @battery_capacity
         puts "Fully charged"
         break
       end
     end
-
   end
 
   def turn_off
-    if @current_battery <= 0
-      puts 'device is turned off'
-    else
-      puts "no need to turn off. Battery: #{@current_battery}"
-    end
+    (@current_battery <= 0) ? puts 'device is turned off' : puts "no need to turn off. Battery: #{@current_battery}"
 
   end
 

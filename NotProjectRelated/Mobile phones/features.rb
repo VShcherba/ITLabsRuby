@@ -4,7 +4,7 @@ require_relative 'mobile_device'
 module Wireless_charging
   def initialize
     super
-    @wireless_charging_speed = 2000
+    @wireless_charging_speed = 800
   end
 
 
@@ -24,7 +24,7 @@ end
 
 
 module Turbo_charge
-  def charging(hours)
-    charge(hours)
+  def charging_speed
+    @charging_speed * 2
   end
 end

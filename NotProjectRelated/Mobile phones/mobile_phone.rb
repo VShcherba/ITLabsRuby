@@ -4,7 +4,7 @@ require_relative 'mobile_device'
 
 class Mobile_phone < MobileDevice
 
-#include Turbo_charge
+include Turbo_charge
 
   def initialize
     super
@@ -15,6 +15,14 @@ class Mobile_phone < MobileDevice
   end
 end
 
+
+
+
+
+=begin
 iphone = Mobile_phone.new
 iphone.charging(8)
+puts iphone.current_battery
 iphone.show_video(5)
+puts iphone.charging_speed
+=end
