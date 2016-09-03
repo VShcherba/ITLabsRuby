@@ -4,6 +4,7 @@ require_relative 'mobile_device'
 class Tablet < MobileDevice
 
 include Wireless_charging
+include GPS
 
   def initialize
     super
@@ -13,12 +14,3 @@ include Wireless_charging
     @energy_consumption = 1000
   end
 end
-
-sony = Tablet.new
-puts sony.battery_capacity
-sony.charging(5)
-puts sony.battery_capacity
-sony.show_video(10)
-sony.wireless_charging(5)
-
-

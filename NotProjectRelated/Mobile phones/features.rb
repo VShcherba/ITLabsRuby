@@ -22,9 +22,31 @@ module Wireless_charging
 end
 
 
-
 module Turbo_charge
   def charging_speed
     @charging_speed * 2
   end
+end
+
+module GPS
+  private
+  attr_writer :gps
+
+  public
+  attr_reader :gps
+
+  def initialize
+    super
+    @gps ||= 'off'
+  end
+
+  def set_gps_mode(param)
+    case param
+      when 'on'
+        self.gps = 'on'
+      when 'off'
+        self.gps= 'off'
+    end
+  end
+
 end
