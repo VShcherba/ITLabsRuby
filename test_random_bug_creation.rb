@@ -31,7 +31,7 @@ include RedmineBasic
   def test_create_issues
 
     register
-    create_project
+    create_project(RANDOM_PROJECT_NAME)
     random_bug_creation
     open_issues
 

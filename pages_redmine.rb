@@ -16,13 +16,10 @@ module SignIn
 end
 
 module RedmineBasic
+  RANDOM_PROJECT_NAME = "Madowl_project_" + rand(9999).to_s
 
-
-
-
-
-     def create_project
-      project_name = "Madowl_project_" + rand(9999).to_s
+     def create_project(project_name)
+      #project_name = "Madowl_project_" + rand(9999).to_s
       @b.link(class:'projects').click
       @b.link(class:'icon-add').click
       @b.text_field(id:'project_name').set project_name
@@ -36,12 +33,14 @@ module RedmineBasic
       @b.text_field(id:'issue_subject').set 'First bug'
       @b.button(name:'commit').click
     end
+
     def random_bug_creation
       random = rand(2)
       if random == 1
         create_bug
       end
     end
+
     def open_issues
       @b.link(class:'issues').click
     end
@@ -53,4 +52,10 @@ module RedmineBasic
     def add_to_watchers
       @b.link(xpath:'(//a[contains(@href,"watchers/watch")])[last()]').click
     end
+
+    def open_project(project_name)
+      @b.link(class:'projects').click
+      @b.link(text: project_name).click
+    end
+
 end
