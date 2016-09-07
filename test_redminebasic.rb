@@ -1,7 +1,9 @@
 require 'watir-webdriver'
 require 'test/unit'
+require 'rspec'
 
 class TestRedmineBasics < Test::Unit::TestCase
+include RSpec::Matchers
 
 #Support methods
   def setup
@@ -75,48 +77,49 @@ class TestRedmineBasics < Test::Unit::TestCase
 
   def test_registration
     registration
-    assert(@b.text.include?('Ваша учётная запись активирована. Вы можете войти.') || @b.text.include?('Your account has been activated. You can now log in.'))
+    expect(@b.div(id:'flash_notice').text).to eql('Your account has been activated. You can now log in.'||'Ваша учётная запись активирована. Вы можете войти.')
   end
 
   def test_user_login
     registration
     logout
     login
-    assert(@b.link(text: @login).visible?)
+    expect(@b.link(text: @login)).to be
   end
 
   def test_user_logout
     registration
     logout
-    assert(@b.link(class:'login').visible?)
+    expect(@b.link(class:'login')).to be
+
   end
   def test_change_password
     registration
     change_password
-    assert(@b.text.include?('Пароль успешно обновлён.') || @b.text.include?('Password was successfully updated.'))
+    expect(@b.text).to include('Password was successfully updated.'||'Пароль успешно обновлён.')
   end
   def test_create_project
     registration
     create_project
-    assert(@b.text.include?("Создание успешно.") || @b.text.include?("Successful creation."))
+    expect(@b.text).to include("Successful creation."||"Создание успешно.")
   end
   def test_create_version
     registration
     create_project
     create_project_version
-    assert(@b.text.include?("Создание успешно.") || @b.text.include?("Successful creation."))
-    assert(@b.link(text:'first_version').visible?)
+    expect(@b.link(text:'first_version')).to be
+    expect(@b.text).to include("Successful creation."||"Создание успешно.")
   end
 
   def test_create_issues
     registration
     create_project
     create_feature
-    assert(@b.div(class:'subject').text.include? 'First feature')
+    expect(@b.div(class:'subject').text).to eq('First feature')
     create_support
-    assert(@b.div(class:'subject').text.include? 'First support issue')
+    expect(@b.div(class:'subject').text).to eq('First support issue')
     create_bug
-    assert(@b.div(class:'subject').text.include? 'First bug')
+    expect(@b.div(class:'subject').text).to eq('First bug')
   end
 
 
