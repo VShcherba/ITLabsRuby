@@ -19,7 +19,7 @@ class TestOpenProjectWithException < Test::Unit::TestCase
 
     rescue Watir::Exception::UnknownObjectException
       begin
-        raise MyErrorMessage.new(@project_name)
+        raise MyErrorMessage.new(RANDOM_PROJECT_NAME)
       rescue MyErrorMessage => e
         e.explaine
       end
