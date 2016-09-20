@@ -77,38 +77,40 @@ include RSpec::Matchers
 
   def test_registration
     registration
-    expect(@b.div(id:'flash_notice').text).to eql('Your account has been activated. You can now log in.'||'Ваша учётная запись активирована. Вы можете войти.')
+    expect(@b.div(id:'flash_notice').text).to eql('Ваша учётная запись активирована. Вы можете войти.') | eql('Your account has been activated. You can now log in.')
   end
 
   def test_user_login
     registration
     logout
     login
-    expect(@b.link(text: @login)).to be
+    expect(@b.link(text: @login).visible?).to be_truthy
   end
 
   def test_user_logout
     registration
     logout
-    expect(@b.link(class:'login')).to be
-
+    expect(@b.link(class:'login').visible?).to be_truthy
   end
+
   def test_change_password
     registration
     change_password
-    expect(@b.text).to include('Password was successfully updated.'||'Пароль успешно обновлён.')
+    expect(@b.text).to include('Пароль успешно обновлён.').or include('Password was successfully updated.')
   end
+
   def test_create_project
     registration
     create_project
-    expect(@b.text).to include("Successful creation."||"Создание успешно.")
+    expect(@b.text).to include("Создание успешно.").or include("Successful creation.")
   end
+
   def test_create_version
     registration
     create_project
     create_project_version
-    expect(@b.link(text:'first_version')).to be
-    expect(@b.text).to include("Successful creation."||"Создание успешно.")
+    expect(@b.link(text:'first_version').visible?).to be_truthy
+    expect(@b.text).to include("Создание успешно.").or include("Successful creation.")
   end
 
   def test_create_issues
@@ -121,7 +123,6 @@ include RSpec::Matchers
     create_bug
     expect(@b.div(class:'subject').text).to eq('First bug')
   end
-
 
   def teardown
   @b.quit
