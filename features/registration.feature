@@ -6,5 +6,5 @@ Feature: Registration of the new user
 
     Given I am on home page
     When I open registration page
-    And Submit valid user data
+    And Submit valid credentials
     Then My account is registered

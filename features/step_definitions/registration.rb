@@ -7,7 +7,7 @@ When(/^I open registration page$/) do
   register_button.click
 end
 
-When(/^Submit valid user data$/) do
+When(/^Submit valid credentials$/) do
 
 
   @login = 'Madowl' + rand(9999).to_s
