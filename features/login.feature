@@ -6,7 +6,9 @@ Feature: Login as a registered user
     Given I am on home page
     When I open registration page
     And Submit valid credentials
-    Then My account is registered
+    And My account is registered
+    And I click on Log out button
+    And I am logged out
 
   Scenario: Successfull user login
 
