@@ -63,20 +63,21 @@ def create_project_version
   @b.text_field(id:'version_name').set "first_version"
   @b.button(name:'commit').click
 end
-def create_feature
+
+def open_issues_tab
   @b.link(class:'new-issue').click
+end
+def create_feature
   @b.select_list(id:'issue_tracker_id').select 'Feature'
   @b.text_field(id:'issue_subject').set 'First feature'
   @b.button(name:'commit').click
 end
 def create_bug
-  @b.link(class:'new-issue').click
   @b.select_list(id:'issue_tracker_id').select 'Bug'
   @b.text_field(id:'issue_subject').set 'First bug'
   @b.button(name:'commit').click
 end
 def create_support
-  @b.link(class:'new-issue').click
   @b.select_list(id:'issue_tracker_id').when_present.select 'Support'
   @b.text_field(id:'issue_subject').when_present.set 'First support issue'
   @b.button(name:'commit').click
