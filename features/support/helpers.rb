@@ -26,22 +26,38 @@ end
 def logout
   @b.link(class:'logout').click
 end
-def change_password
+
+def open_my_account_page
+  @b.link(class:"my-account").click
+end
+
+def click_change_password_link
   @b.link(class:'icon-passwd').click
+end
+def change_password
   @b.text_field(id:'password').set 'qwerty'
   @b.text_field(id:'new_password').set 'qwe123'
   @b.text_field(id:'new_password_confirmation').set 'qwe123'
   @b.button(name:'commit').click
 end
+
+def open_projects_page
+  @b.link(class:'projects').click
+end
+
+def click_project_creation_link
+  @b.link(class:'icon-add').click
+end
 def create_project
   project_name = "Madowl_project_" + rand(9999).to_s
-  @b.link(class:'projects').click
-  @b.link(class:'icon-add').click
   @b.text_field(id:'project_name').set project_name
   @b.button(name:'commit').click
 end
-def create_project_version
+
+def open_versions_tab
   @b.link(id:'tab-versions').click
+end
+def create_project_version
   new_version_button = @b.div(id:'tab-content-versions').link(class:'icon icon-add')
   new_version_button.click
   @b.text_field(id:'version_name').set "first_version"

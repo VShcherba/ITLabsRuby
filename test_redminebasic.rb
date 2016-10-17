@@ -125,6 +125,6 @@ include RSpec::Matchers
   end
 
   def teardown
-  @b.quit
+  #@b.quit
   end
 end

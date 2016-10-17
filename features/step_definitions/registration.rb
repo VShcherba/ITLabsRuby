@@ -25,4 +25,3 @@ end
 Then(/^My account is registered$/) do
   expect(@b.div(id:'flash_notice').text).to eql('Ваша учётная запись активирована. Вы можете войти.') | eql('Your account has been activated. You can now log in.')
 end
-
