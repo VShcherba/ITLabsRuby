@@ -67,6 +67,7 @@ end
 def open_issues_tab
   @b.link(class:'new-issue').click
 end
+
 def create_feature
   @b.select_list(id:'issue_tracker_id').select 'Feature'
   @b.text_field(id:'issue_subject').set 'First feature'
