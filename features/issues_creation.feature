@@ -11,13 +11,13 @@ Feature: User is able to create different types of issues for the project
     And Submit data for new project
     Then New project is created
 
-  Scenario Outline: Example
+  Scenario Outline: Successfull creation of 3 types of issues
     When I open issues tab
     And I create <issue type>
     Then Issue with name <issue name> is created
 
   Examples:
-    |example description| issue type | issue name    |
-    |User is adding feature| Feature    | First feature |
-    |User is adding bug| Bug        | First bug     |
-    |User is adding support issue| Support    | First support issue |
+    | issue type | issue name    |
+    | Feature    | First feature |
+    | Bug        | First bug     |
+    | Support    | First support issue |
