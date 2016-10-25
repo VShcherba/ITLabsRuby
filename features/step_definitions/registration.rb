@@ -1,10 +1,9 @@
 Given(/^I am on home page$/) do
-  @b.goto "http://demo.redmine.org"
+  visit(UnloggedHomePage).call_method
 end
 
 When(/^I open registration page$/) do
-  register_button = @b.link(class:'register')
-  register_button.click
+  @current_page.register_button
 end
 
 When(/^Submit valid credentials$/) do
