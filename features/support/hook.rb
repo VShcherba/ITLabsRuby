@@ -1,7 +1,7 @@
 Before do
- @b = Watir::Browser.new :firefox
+ @browser = Watir::Browser.new :firefox
 end
 
 After do
-  @b.quit
+  #@browser.quit
 end

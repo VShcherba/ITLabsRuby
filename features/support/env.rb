@@ -1,9 +1,12 @@
 require 'watir-webdriver'
 require 'test/unit'
 require 'rspec'
-require_relative '../../features/support/helpers'
+require 'require_all'
 require 'page-object'
-#require_all 'lib'
+require_all 'pages'
+
+require_relative '../../features/support/helpers'
+
 
 World(RSpec::Matchers)
 World(Helpers)

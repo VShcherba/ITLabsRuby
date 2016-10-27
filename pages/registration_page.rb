@@ -1,5 +1,3 @@
-require_relative '../pages/basic_page'
-
 class RegistrationPage < BasicPage
 
   text_field :user_login, id:'user_login'
@@ -9,6 +7,7 @@ class RegistrationPage < BasicPage
   text_field :user_lastname, id:'user_lastname'
   text_field :user_email, id:'user_mail'
   button :submit_button, name:'commit'
+  div :notification_message, id:'flash_notice'
 
 
   def fill_registration_form
@@ -17,8 +16,12 @@ class RegistrationPage < BasicPage
     self.user_password= 'qwerty'
     self.user_password_confirmation= 'qwerty'
     self.user_firstname= 'first name'
-    self.self.user_lastname= 'last name'
+    self.user_lastname= 'last name'
     self.user_email= @login + '@mailinator.com'
+  end
+
+  def submit_registration_form
+    submit_button
   end
 
 end

@@ -1,26 +1,18 @@
 Given(/^I am on home page$/) do
-  visit(UnloggedHomePage).call_method
+  visit(UnloggedHomePage)
 end
 
 When(/^I open registration page$/) do
-  @current_page.register_button
+  @current_page.open_registration_page
 end
 
 When(/^Submit valid credentials$/) do
 
-
-  @login = 'Madowl' + rand(9999).to_s
-  @b.text_field(id:'user_login').set @login
-  @b.text_field(id:'user_password').set 'qwerty'
-  @b.text_field(id:'user_password_confirmation').set 'qwerty'
-  @b.text_field(id:'user_firstname').set 'first name'
-  @b.text_field(id:'user_lastname').set 'last name'
-  @b.text_field(id:'user_mail').set @login + '@mailinator.com'
-  @b.button(name:'commit').click
-
+  on(RegistrationPage).fill_registration_form
+  @current_page.submit_registration_form
 end
 
 
 Then(/^My account is registered$/) do
-  expect(@b.div(id:'flash_notice').text).to eql('Ваша учётная запись активирована. Вы можете войти.') | eql('Your account has been activated. You can now log in.')
+  expect(@current_page.notification_message_element.text).to eql('Ваша учётная запись активирована. Вы можете войти.') | eql('Your account has been activated. You can now log in.')
 end
