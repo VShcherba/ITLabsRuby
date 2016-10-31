@@ -7,4 +7,6 @@ class UnloggedHomePage < BasicPage
   def open_registration_page
     register_button
   end
+
+
 end

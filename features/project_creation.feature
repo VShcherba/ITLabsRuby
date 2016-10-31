@@ -11,5 +11,5 @@ Feature: User is able to create new project
     Given I am on home page
     When I open projects page
     And I click create new project
-    And Submit data for new project
+    And Submit form with random data
     Then New project is created

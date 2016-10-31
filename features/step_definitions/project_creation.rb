@@ -1,12 +1,13 @@
 When(/^I open projects page$/) do
-  open_projects_page
+  @current_page.open_projects_page
 end
 And(/^I click create new project$/) do
-  click_project_creation_link
+  on(ProjectsPage).create_new_project
 end
-And(/^Submit data for new project$/) do
-  create_project
+And(/^Submit form with random data$/) do
+  on(ProjectCreationPage).set_random_projects_name
+  @current_page.confirm_creation
 end
 Then(/^New project is created$/) do
-  expect(@b.text).to include("Создание успешно.").or include("Successful creation.")
+  expect(on(ProjectPage).notification_element.text).to include("Создание успешно.").or include("Successful creation.")
 end
