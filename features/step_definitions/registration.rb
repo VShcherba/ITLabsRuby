@@ -7,7 +7,6 @@ When(/^I open registration page$/) do
 end
 
 When(/^Submit valid credentials$/) do
-
   on(RegistrationPage).fill_registration_form
   @current_page.submit_registration_form
 end

@@ -9,7 +9,7 @@ When(/^I submit (not )?valid credentials "([^"]*)"\/"([^"]*)"$/) do |_,login, pa
   @driver.find_element(name:'login').click
 end
 
-Then(/^I am logged in$/) do
+Then(/^I sam logged in$/) do
   @wait.until {@driver.find_element(id:'loggedas').displayed?}
   expect(@driver.find_element(id:'loggedas').text).not_to be_nil
 end

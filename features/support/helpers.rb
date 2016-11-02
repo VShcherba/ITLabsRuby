@@ -30,10 +30,10 @@ end
 def open_my_account_page
   @b.link(class:"my-account").click
 end
-
 def click_change_password_link
   @b.link(class:'icon-passwd').click
 end
+
 def change_password
   @b.text_field(id:'password').set 'qwerty'
   @b.text_field(id:'new_password').set 'qwe123'

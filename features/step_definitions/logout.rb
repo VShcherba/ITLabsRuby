@@ -1,6 +1,6 @@
 When(/^I click on Log out button$/) do
-  logout
+  @current_page.sign_out
 end
 Then(/^I am logged out$/) do
-  expect(@b.link(class:'login').visible?).to be_truthy
+  expect(on(UnloggedHomePage).login_button_element.visible?).to be_truthy
 end

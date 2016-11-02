@@ -12,7 +12,7 @@ Feature: Login as a registered user
 
   Scenario: Successfull user login
 
-
     Given I am on home page
+    When I open login page
     When I login with valid credentials
     Then I am logged in

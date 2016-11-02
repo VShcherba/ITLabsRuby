@@ -11,13 +11,13 @@ class RegistrationPage < BasicPage
 
 
   def fill_registration_form
-    @login = 'Madowl' + rand(9999).to_s
-    self.user_login= @login
+    $login = 'Madowl' + rand(9999).to_s
+    self.user_login= $login
     self.user_password= 'qwerty'
     self.user_password_confirmation= 'qwerty'
     self.user_firstname= 'first name'
     self.user_lastname= 'last name'
-    self.user_email= @login + '@mailinator.com'
+    self.user_email= $login + '@mailinator.com'
   end
 
   def submit_registration_form

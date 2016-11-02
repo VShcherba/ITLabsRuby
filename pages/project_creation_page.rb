@@ -10,7 +10,7 @@ class ProjectCreationPage < BasicPage
   end
 
   def set_random_projects_name
-    self.project_name= "Madowl_project_" + rand(9999).to_s
+    self.project_name_element.when_present.set "Madowl_project_" + rand(9999).to_s
   end
 
   def set_as_not_public

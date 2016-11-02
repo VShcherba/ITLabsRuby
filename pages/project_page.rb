@@ -15,4 +15,8 @@ class ProjectPage < BasicPage
   def create_new_version
     self.new_version
   end
+
+  def create_new_issue
+    self.new_issue
+  end
 end

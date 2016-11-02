@@ -8,7 +8,7 @@ Feature: User is able to create different types of issues for the project
     And I am on home page
     And I open projects page
     And I click create new project
-    And Submit data for new project
+    And Submit form with random data
     Then New project is created
 
   Scenario Outline: Successfull creation of 3 types of issues
