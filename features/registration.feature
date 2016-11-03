@@ -1,3 +1,4 @@
+@smoke @registration
 Feature: Registration of the new user
 
   Some basic user registration

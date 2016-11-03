@@ -1,3 +1,4 @@
+@smoke
 Feature: User is able to create different types of issues for the project
 
   Background:

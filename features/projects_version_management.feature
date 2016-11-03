@@ -1,3 +1,4 @@
+@project
 Feature: User is able to manage versions of the project
 
   Background:

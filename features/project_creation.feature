@@ -1,3 +1,4 @@
+@smoke @project
 Feature: User is able to create new project
 
   Background:
